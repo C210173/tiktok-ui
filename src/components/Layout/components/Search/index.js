@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
 import * as searchServices from '~/apiServices/searchServices';
-import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +19,7 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 600);
+    const debounced = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
@@ -35,7 +35,6 @@ function Search() {
             const result = await searchServices.search(debounced);
 
             setSearchResult(result);
-
             setLoading(false);
         };
 
@@ -73,7 +72,7 @@ function Search() {
                     ref={inputRef}
                     value={searchValue}
                     placeholder="Search accounts and videos"
-                    spellCheck="false"
+                    spellCheck={false}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setShowResult(true)}
                 />
@@ -83,6 +82,7 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+
                 <button className={cx('search-btn')}>
                     <SearchIcon />
                 </button>

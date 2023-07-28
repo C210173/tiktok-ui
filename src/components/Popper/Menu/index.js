@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import { useState } from 'react';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
 import Header from './Header';
 import styles from './Menu.module.scss';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +14,7 @@ const defaultFn = () => {};
 function Menu({ children, items = [], onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
+
     const renderItems = () => {
         return current.data.map((item, index) => {
             const isParent = !!item.children;
@@ -38,7 +39,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
         <Tippy
             interactive
             delay={[0, 700]}
-            offset={[8, 12]}
+            offset={[12, 8]}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>

@@ -22,6 +22,7 @@ import Image from '~/components/Image';
 import Search from '../Search';
 
 const cx = classNames.bind(styles);
+
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -52,13 +53,15 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
+
 function Header() {
     const currentUser = true;
 
+    // Handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
-                //Handle change language
+                // Handle change language
                 break;
             default:
         }
@@ -73,7 +76,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Get coins',
-            to: '/coins',
+            to: '/coin',
         },
         {
             icon: <FontAwesomeIcon icon={faGear} />,
@@ -92,8 +95,8 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="tiktok" />
-                {/* Search */}
+                <img src={images.logo} alt="Tiktok" />
+
                 <Search />
 
                 <div className={cx('actions')}>
